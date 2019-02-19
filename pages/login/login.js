@@ -52,7 +52,7 @@ $('#login-form button').click(function(){
 
 	$.post(baseurl + 'ajax_service?request=eedacb1cf19c9aa0a5194bede1d25a40',
 		{ 
-			'data' : $('#login-form').serializeArray() 
+			'data' : $('#login-form').serialize() 
 		}, 
 		function(response)
 		{
@@ -63,7 +63,8 @@ $('#login-form button').click(function(){
 			}
 		}, 'json')
 	.fail(function(jqXHR, textStatus, errorThrown){
-		fmDanger('Failed to connect to the server.');
+		fmDanger('Error: ' + textStatus);
+		console.log(jqXHR);
 	});
 
 	$('.loading').remove();

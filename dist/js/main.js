@@ -4,7 +4,7 @@ var onlineStatus = '<div id="onlineStatusMsg" class="fm fm-top fm-danger">You\'r
 var pleasewait = '<div class="loading"><img class="imageRotateHorizontal" src="../../favicon.ico" /><p>Please Wait</p></div>';
 
 $.ajaxSetup({
-    headers: { 'Authorization' : 'tokehiber' }
+    headers: { 'Authorization' : '5a189754850faae3305b284e1ab93a8c' }
 });
 
 function ping()
