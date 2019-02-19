@@ -7,11 +7,13 @@ function ping()
 			$('#onlineStatusMsg').slideUp('slow');
 			$('#onlineStatusMsg').remove();
 		}
-		ping();
+		setTimeout(function(){
+		    ping();
+		}, 60000);
 	}, 'json')
 	.fail(function(jqXHR, textStatus, errorThrown){
 		if ($('#onlineStatusMsg').length == 0) {
-			$('body').prepend('<div id="onlineStatusMsg" class="bg-red color-palette" style="min-height: 23px; text-align: center;"> <b>You\'re offline.</b></div>').slideDown('slow');
+			$('body').prepend('<div id="onlineStatusMsg" class="bg-red color-palette" style="text-align: center;"> <b>You\'re offline.</b></div>').slideDown('slow');
 		}
 		setTimeout(function(){
 			ping();
