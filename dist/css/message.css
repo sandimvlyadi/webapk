@@ -1,0 +1,33 @@
+.fm {
+    position : fixed;
+    width : 100%;
+    font-size: 14px;
+    text-align: center;
+    z-index : 9999;
+}
+
+.fm-bottom {
+	bottom : 0px;
+	padding: 10px;
+}
+
+.fm-top {
+	top: 0px;
+	padding: 5px;
+	font-weight: bold;
+}
+
+.fm-danger {
+	background-color: #b91d47;
+    color: #fff;
+}
+
+.fm-success {
+	background-color:  #00a300;
+    color: #fff;
+}
+
+.fm-warning {
+	background-color:  #ffc40d;
+    color: #fff;
+}

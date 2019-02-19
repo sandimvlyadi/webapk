@@ -1,26 +1,3 @@
-var baseurl = 'http://192.168.5.122/webapi/';
-
-function ping()
-{
-	$.get(baseurl + 'ajax_service?request=ping', function(response){
-		if ($('#onlineStatusMsg').length > 0) {
-			$('#onlineStatusMsg').slideUp('fast');
-			$('#onlineStatusMsg').remove();
-		}
-		setTimeout(function(){
-		    ping();
-		}, 3000);
-	}, 'json')
-	.fail(function(jqXHR, textStatus, errorThrown){
-		if ($('#onlineStatusMsg').length == 0) {
-			$('body').prepend('<div id="onlineStatusMsg" class="bg-red color-palette" style="text-align: center;"> <b>You\'re offline.</b></div>').slideDown('slow');
-		}
-		setTimeout(function(){
-			ping();
-		}, 3000);
-	});
-}
-
 $('#login-form button').click(function(){
 	var email = $('input[type="email"]').val();
 	if (email == '') {
@@ -71,12 +48,29 @@ $('#login-form button').click(function(){
 
 	$(this).attr('disabled', 'disabled');
 	$('.login-box').hide();
-	$('body').prepend('<div class="loading"><img class="imageRotateHorizontal" src="../../favicon.ico" /><p>Please Wait</p></div>');
-	setTimeout(function(){
-		$('.loading').remove();
-		$('.login-box').show();
-		$(this).removeAttr('disabled');
-	}, 5000);
+	$('body').prepend(pleasewait);
+
+	$.post(baseurl + 'ajax_service?request=eedacb1cf19c9aa0a5194bede1d25a40',
+		{ 
+			'data' : $('#login-form').serializeArray() 
+		}, 
+		function(response)
+		{
+			if (response.result) {
+				location.replace(response.target);
+			} else{
+				fmDanger(response.msg);
+			}
+		}, 'json')
+	.fail(function(jqXHR, textStatus, errorThrown){
+		fmDanger('Failed to connect to the server.');
+	});
+
+	$('.loading').remove();
+	$('.login-box').show();
+	$('input[type="password"]').val('');
+	$('input[type="password"]').focus();
+	$('#login-form button').removeAttr('disabled');
 
 });
 

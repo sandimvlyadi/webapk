@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- loading -->
     <link rel="stylesheet" href="../../dist/css/loading.css">
+    <!-- message -->
+    <link rel="stylesheet" href="../../dist/css/message.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,11 +42,11 @@
 
         <form id="login-form">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input name="Login[email]" type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input name="Login[password]" type="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
@@ -70,6 +72,7 @@
 <!-- Bootstrap 3.3.7 -->
 <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Login JS -->
+<script src="../../dist/js/main.js"></script>
 <script src="./login.js"></script>
 </body>
 </html>
