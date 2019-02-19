@@ -1,0 +1,91 @@
+.loading{
+	position: fixed;
+  	width: 100%;
+  	top: 50%;
+  	bottom: 50%;
+  	text-align: center;
+  	animation: glowtext .75s linear infinite alternate;
+}
+
+@keyframes glowtext {
+    0% {
+    	color: #FFFFFF;     
+    }	
+
+    50% {
+    	color: #C0C0C0;     
+    }	
+  
+    100% {
+    	color: #808080;     
+    }	
+}
+
+.imageRotateHorizontal{
+    -moz-animation: spinHorizontal 1.75s infinite linear;
+    -o-animation: spinHorizontal 1.75s infinite linear;    
+    -webkit-animation: spinHorizontal 1.75s infinite linear;
+    animation: spinHorizontal 1.75s infinite linear;
+}
+
+@-moz-keyframes spinHorizontal {
+    0% {
+        -moz-transform: rotateY(0deg);
+    }
+
+    100% {
+        -moz-transform: rotateY(360deg);
+    }
+}
+
+@keyframes spinHorizontal {
+	0% { 
+        transform: rotateY(0deg); 
+	}
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+@-ms-keyframes spinHorizontal {
+	0% { 
+        -ms-transform: rotateY(0deg); 
+	}
+    100% {
+        -ms-transform: rotateY(360deg);
+    }
+}
+
+@-o-keyframes spinHorizontal {
+	0% { 
+        -o-transform: rotateY(0deg); 
+	}
+	100% { 
+        -o-transform: rotateY(360deg); 
+	}
+}
+
+@-webkit-keyframes spinHorizontal {
+	0% { 
+        -webkit-transform: rotateY(0deg); 
+	}
+	100% { 
+        -webkit-transform: rotateY(360deg); 
+	}
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
