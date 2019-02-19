@@ -75,7 +75,8 @@ $('#login-form button').click(function(){
 	setTimeout(function(){
 		$('.loading').remove();
 		$('.login-box').show();
-	}, 3000);
+		$(this).removeAttr('disabled');
+	}, 5000);
 
 });
 

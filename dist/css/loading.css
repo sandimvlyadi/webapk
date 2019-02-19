@@ -1,8 +1,7 @@
 .loading{
 	position: fixed;
   	width: 100%;
-  	top: 50%;
-  	bottom: 50%;
+  	top: 27%;
   	text-align: center;
   	animation: glowtext .75s linear infinite alternate;
 }
