@@ -25,6 +25,10 @@
     -o-animation: spinHorizontal 1.75s infinite linear;    
     -webkit-animation: spinHorizontal 1.75s infinite linear;
     animation: spinHorizontal 1.75s infinite linear;
+    min-height: 32px;
+    min-width: 32px;
+    max-height: 64px;
+    max-width: 64px;
 }
 
 @-moz-keyframes spinHorizontal {

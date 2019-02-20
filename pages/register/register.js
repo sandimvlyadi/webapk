@@ -148,7 +148,5 @@ $('#register-form button').click(function(){
 });
 
 $(document).ready(function(){
-	ping();
-
 	$('#register-form button').removeAttr('disabled');
 });

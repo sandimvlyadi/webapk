@@ -79,7 +79,5 @@ $('#login-form button').click(function(){
 });
 
 $(document).ready(function(){
-	ping();
-
 	$('#login-form button').removeAttr('disabled');
 });

@@ -58,6 +58,8 @@ function fmWarning(msg = '')
 }
 
 $(document).ready(function(){
+	ping();
+	
 	if (sessionStorage.getItem('msgResult') !== null) {
 		if (sessionStorage.getItem('msgResult') === 'true') {
 			fmSuccess(sessionStorage.getItem('msg'));
