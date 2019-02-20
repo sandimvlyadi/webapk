@@ -59,22 +59,30 @@ $('#login-form button').click(function(){
 		success	: function(response){
 			// console.log(response);
 			if (response.result) {
-				window.location.replace(response.target);
+				// window.location.replace(response.target);
+				console.log(response);
+				fmSuccess('logged in');
 			} else{
 				fmDanger(response.msg);
+
+				$('.loading').remove();
+				$('.login-box').show();
+				$('input[type="password"]').val('');
+				$('input[type="password"]').focus();
+				$('#login-form button').removeAttr('disabled');
 			}
 		},
 		error 	: function(jqXHR, textStatus, errorThrown){
-			fmDanger('Error: ' + textStatus);
+			fmDanger('Error: disconnected from server.');
 			console.log(jqXHR);
+
+			$('.loading').remove();
+			$('.login-box').show();
+			$('input[type="password"]').val('');
+			$('input[type="password"]').focus();
+			$('#login-form button').removeAttr('disabled');
 		}
 	});
-
-	$('.loading').remove();
-	$('.login-box').show();
-	$('input[type="password"]').val('');
-	$('input[type="password"]').focus();
-	$('#login-form button').removeAttr('disabled');
 
 });
 

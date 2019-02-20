@@ -124,6 +124,7 @@ $('#register-form button').click(function(){
 				window.location.replace(response.target);
 			} else{
 				fmDanger(response.msg);
+				
 				$('.loading').remove();
 				$('.login-box').show();
 				$('input[type="password"]:eq(0)').val('');
@@ -133,7 +134,7 @@ $('#register-form button').click(function(){
 			}
 		},
 		error 	: function(jqXHR, textStatus, errorThrown){
-			fmDanger('Error: ' + textStatus);
+			fmDanger('Error: disconnected from server.');
 			console.log(jqXHR);
 
 			$('.loading').remove();
