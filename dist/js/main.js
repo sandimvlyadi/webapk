@@ -56,3 +56,15 @@ function fmWarning(msg = '')
     	message.remove();
     }, 4000);
 }
+
+$(document).ready(function(){
+	if (sessionStorage.getItem('msgResult') !== null) {
+		if (sessionStorage.getItem('msgResult') === 'true') {
+			fmSuccess(sessionStorage.getItem('msg'));
+		} else{
+			fmDanger(sessionStorage.getItem('msg'));
+		}
+		sessionStorage.removeItem('msgResult');
+		sessionStorage.removeItem('msg');
+	}
+})

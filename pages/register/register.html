@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
     <!-- iCheck -->
     <link rel="stylesheet" href="../../plugins/iCheck/square/blue.css">
+    <!-- loading -->
+    <link rel="stylesheet" href="../../dist/css/loading.css">
+    <!-- message -->
+    <link rel="stylesheet" href="../../dist/css/message.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -40,35 +44,35 @@
 
         <form id="register-form">
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Your Name">
+                <input name="Register[fullname]" type="text" class="form-control" placeholder="Your Full Name">
                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="email" class="form-control" placeholder="Email">
+                <input name="Register[email]" type="email" class="form-control" placeholder="Email">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password">
+                <input name="Register[password]" type="password" class="form-control" placeholder="Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Repeat Password">
+                <input name="Register[repeat_password]" type="password" class="form-control" placeholder="Repeat Password">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input type="text" class="form-control" placeholder="Company Token">
+                <input name="Register[secret_key]" type="text" class="form-control" placeholder="Company Secret Key">
                 <span class="glyphicon glyphicon-qrcode form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
                 <div class="checkbox icheck">
                     <label>
-                        <input type="checkbox"> I have read and agree to the terms and conditions that apply in this company
+                        <input type="checkbox"> I have read and agree to the <a href="#terms">terms</a> and <a href="#conditions">conditions</a> that apply in this company
                     </label>
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-4">
-                    <button type="button" class="btn btn-primary btn-block btn-flat">Register
+                    <button type="button" class="btn btn-primary btn-block btn-flat" disabled="disabled">Register
                     </button>
                 </div>
                 <div class="col-xs-8" style="text-align: right;">
@@ -99,5 +103,8 @@
     });
   });
 </script>
+<!-- Login JS -->
+<script src="../../dist/js/main.js"></script>
+<script src="./register.js"></script>
 </body>
 </html>

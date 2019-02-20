@@ -5,7 +5,7 @@ $('#login-form button').click(function(){
 		var div = $('#login-form div:eq(0)');
 		div.addClass('has-error');
 		var errMsg = $('<span class="help-block"></span>');
-		errMsg.append('Email can not be empty');
+		errMsg.append('Email can not be empty.');
 		$('#login-form div:eq(0)').append(errMsg.slideDown('slow').delay(3000).slideUp('fast'));
 		setTimeout(function(){
 			errMsg.remove();
@@ -20,7 +20,7 @@ $('#login-form button').click(function(){
 			var div = $('#login-form div:eq(0)');
 			div.addClass('has-error');
 			var errMsg = $('<span class="help-block"></span>');
-			errMsg.append('Please enter your e-mail address correctly');
+			errMsg.append('Please enter your e-mail address correctly.');
 			$('#login-form div:eq(0)').append(errMsg.slideDown('slow').delay(3000).slideUp('fast'));
 			setTimeout(function(){
 				errMsg.remove();
@@ -35,7 +35,7 @@ $('#login-form button').click(function(){
 		var div = $('#login-form div:eq(1)');
 		div.addClass('has-error');
 		var errMsg = $('<span class="help-block"></span>');
-		errMsg.append('Passowrd can not be empty');
+		errMsg.append('Passowrd can not be empty.');
 		$('#login-form div:eq(1)').append(errMsg.slideDown('slow').delay(3000).slideUp('fast'));
 		setTimeout(function(){
 			errMsg.remove();
@@ -50,21 +50,24 @@ $('#login-form button').click(function(){
 	$('.login-box').hide();
 	$('body').prepend(pleasewait);
 
-	$.post(baseurl + 'ajax_service?request=eedacb1cf19c9aa0a5194bede1d25a40',
-		{ 
-			'data' : $('#login-form').serialize() 
-		}, 
-		function(response)
-		{
+	// console.log($('#login-form').serializeArray());
+	$.ajax({
+		type	: 'POST',
+		url		: baseurl + 'ajax_service?request=eedacb1cf19c9aa0a5194bede1d25a40',
+		dataType: 'json',
+		data	: $("#login-form").serialize(),
+		success	: function(response){
+			// console.log(response);
 			if (response.result) {
-				location.replace(response.target);
+				window.location.replace(response.target);
 			} else{
 				fmDanger(response.msg);
 			}
-		}, 'json')
-	.fail(function(jqXHR, textStatus, errorThrown){
-		fmDanger('Error: ' + textStatus);
-		console.log(jqXHR);
+		},
+		error 	: function(jqXHR, textStatus, errorThrown){
+			fmDanger('Error: ' + textStatus);
+			console.log(jqXHR);
+		}
 	});
 
 	$('.loading').remove();
