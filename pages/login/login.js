@@ -59,9 +59,10 @@ $('#login-form button').click(function(){
 		success	: function(response){
 			// console.log(response);
 			if (response.result) {
-				// window.location.replace(response.target);
-				console.log(response);
-				fmSuccess('logged in');
+				// console.log(response.data);
+				window.localStorage.setItem('user_data', JSON.stringify(response.data));
+				window.localStorage.setItem('token_data', JSON.stringify(response.token));
+				window.location.replace(response.target);
 			} else{
 				fmDanger(response.msg);
 
