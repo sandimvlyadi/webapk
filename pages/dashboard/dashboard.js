@@ -10,4 +10,9 @@ $(document).ready(function(){
 	$('.user-panel').append('<div class="full-left info">');
 	$('.user-panel .info').append('<p>'+ userData.fullname +'</p>');
 	$('.user-panel .info').append('<i class="fa fa-home text-success"></i> ' + userData.company_name.substring(0, 17));
+
+	setTimeout(function(){
+		$('body div').show();
+		$('.loading').remove();
+	}, 500);
 });

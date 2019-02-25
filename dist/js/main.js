@@ -109,6 +109,9 @@ $('#btnSignOut').click(function(){
 	window.location.reload();
 });
 
+$('body div').hide();
+$('body').prepend(pleasewait);
+
 $(document).ready(function(){
 	ping();
 	validateToken(tokenData);
