@@ -11,12 +11,23 @@ $.ajaxSetup({
     headers: { 'Authorization' : '5a189754850faae3305b284e1ab93a8c' }
 });
 
+function actionWhenOnline()
+{
+	$('.user-header img').attr('src', userData.display_picture);
+	$('.user-menu a img').attr('src', userData.display_picture);
+	$('.user-panel .image img').attr('src', userData.display_picture);
+	$('#userImage').attr('src', userData.display_picture);
+}
+
 function ping()
 {
 	$.get(baseurl + 'ajax_service?request=ping', function(response){
 		if ($('#onlineStatusMsg').length > 0) {
 			$('#onlineStatusMsg').remove();
 		}
+
+		actionWhenOnline();
+
 		setTimeout(function(){
 		    ping();
 		}, 3000);
@@ -137,6 +148,9 @@ $(document).ready(function(){
 			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
 			.attr('src', userData.display_picture);
 			$('.user-panel .image img')
+			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
+			.attr('src', userData.display_picture);
+			$('#userImage')
 			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
 			.attr('src', userData.display_picture);
 		}
