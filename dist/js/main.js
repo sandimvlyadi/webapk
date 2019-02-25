@@ -106,7 +106,7 @@ $('#btnProfile').click(function(){
 
 $('#btnSignOut').click(function(){
 	window.localStorage.clear();
-	window.location.reload();
+	window.location.replace('../../pages/login/login.html');
 });
 
 $('body div').hide();
