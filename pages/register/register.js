@@ -151,8 +151,6 @@ $('#register-form button').click(function(){
 $(document).ready(function(){
 	$('#register-form button').removeAttr('disabled');
 
-	setTimeout(function(){
-		$('body div').show();
-		$('.loading').remove();
-	}, 500);
+	$('body div').show();
+	$('.loading').remove();
 });

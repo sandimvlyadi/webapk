@@ -77,8 +77,6 @@ $('#forgot-form button').click(function(){
 $(document).ready(function(){
 	$('#forgot-form button').removeAttr('disabled');
 
-	setTimeout(function(){
-		$('body div').show();
-		$('.loading').remove();
-	}, 500);
+	$('body div').show();
+	$('.loading').remove();
 });

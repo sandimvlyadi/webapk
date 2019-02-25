@@ -90,8 +90,6 @@ $('#login-form button').click(function(){
 $(document).ready(function(){
 	$('#login-form button').removeAttr('disabled');
 
-	setTimeout(function(){
-		$('body div').show();
-		$('.loading').remove();
-	}, 500);
+	$('body div').show();
+	$('.loading').remove();
 });

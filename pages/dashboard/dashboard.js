@@ -11,8 +11,6 @@ $(document).ready(function(){
 	$('.user-panel .info').append('<p>'+ userData.fullname +'</p>');
 	$('.user-panel .info').append('<i class="fa fa-home text-success"></i> ' + userData.company_name.substring(0, 17));
 
-	setTimeout(function(){
-		$('body div').show();
-		$('.loading').remove();
-	}, 500);
+	$('body div').show();
+	$('.loading').remove();
 });
