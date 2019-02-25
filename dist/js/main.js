@@ -11,12 +11,37 @@ $.ajaxSetup({
     headers: { 'Authorization' : '5a189754850faae3305b284e1ab93a8c' }
 });
 
+function actionWhenOnline()
+{
+	$('.user-header img').attr('src', userData.display_picture);
+	$('.user-menu a img').attr('src', userData.display_picture);
+	$('.user-panel .image img').attr('src', userData.display_picture);
+	$('#userImage').attr('src', userData.display_picture);
+}
+
+function actionWhenOffline()
+{
+	$('.user-header img')
+	.load(function(){
+		// nothing to do.
+	})
+	.error(function(){
+		$('.user-header img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('.user-menu a img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('.user-panel .image img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('#userImage').attr('src', '../../dist/img/user2-160x160.jpg');
+	})
+}
+
 function ping()
 {
 	$.get(baseurl + 'ajax_service?request=ping', function(response){
 		if ($('#onlineStatusMsg').length > 0) {
 			$('#onlineStatusMsg').remove();
 		}
+
+		actionWhenOnline();
+
 		setTimeout(function(){
 		    ping();
 		}, 3000);
@@ -26,10 +51,7 @@ function ping()
 			$('body').prepend(onlineStatus);
 		}
 		
-		$('.user-header img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('.user-menu a img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('.user-panel .image img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('#userImage').attr('src', '../../dist/img/user2-160x160.jpg');
+		actionWhenOffline();
 
 		setTimeout(function(){
 			ping();
