@@ -26,7 +26,10 @@ function ping()
 			$('body').prepend(onlineStatus);
 		}
 		
-		userData.display_picture = '../../dist/img/user2-160x160.jpg';
+		$('.user-header img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('.user-menu a img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('.user-panel .image img').attr('src', '../../dist/img/user2-160x160.jpg');
+		$('#userImage').attr('src', '../../dist/img/user2-160x160.jpg');
 
 		setTimeout(function(){
 			ping();
