@@ -25,6 +25,9 @@ function ping()
 		if ($('#onlineStatusMsg').length == 0) {
 			$('body').prepend(onlineStatus);
 		}
+		
+		userData.display_picture = '../../dist/img/user2-160x160.jpg';
+
 		setTimeout(function(){
 			ping();
 		}, 3000);
