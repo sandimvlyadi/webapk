@@ -21,16 +21,10 @@ function actionWhenOnline()
 
 function actionWhenOffline()
 {
-	$('.user-header img')
-	.load(function(){
-		// nothing to do.
-	})
-	.error(function(){
-		$('.user-header img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('.user-menu a img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('.user-panel .image img').attr('src', '../../dist/img/user2-160x160.jpg');
-		$('#userImage').attr('src', '../../dist/img/user2-160x160.jpg');
-	})
+	$('.user-header img').attr('src', '../../dist/img/user2-160x160.jpg');
+	$('.user-menu a img').attr('src', '../../dist/img/user2-160x160.jpg');
+	$('.user-panel .image img').attr('src', '../../dist/img/user2-160x160.jpg');
+	$('#userImage').attr('src', '../../dist/img/user2-160x160.jpg');
 }
 
 function ping()
@@ -39,9 +33,6 @@ function ping()
 		if ($('#onlineStatusMsg').length > 0) {
 			$('#onlineStatusMsg').remove();
 		}
-
-		actionWhenOnline();
-
 		setTimeout(function(){
 		    ping();
 		}, 3000);
@@ -50,9 +41,6 @@ function ping()
 		if ($('#onlineStatusMsg').length == 0) {
 			$('body').prepend(onlineStatus);
 		}
-		
-		actionWhenOffline();
-
 		setTimeout(function(){
 			ping();
 		}, 3000);
@@ -158,9 +146,15 @@ $(document).ready(function(){
 
 	if (userData != null) {
 		if (userData.display_picture != '') {
-			$('.user-header img').attr('src', userData.display_picture);
-			$('.user-menu a img').attr('src', userData.display_picture);
-			$('.user-panel .image img').attr('src', userData.display_picture);
+			$('.user-header img')
+			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
+			.attr('src', userData.display_picture);
+			$('.user-menu a img')
+			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
+			.attr('src', userData.display_picture);
+			$('.user-panel .image img')
+			.on('error', function(){ $(this).attr('src', '../../dist/img/user2-160x160.jpg'); })
+			.attr('src', userData.display_picture);
 		}
 
 		$('.user-header p').replaceWith('<p>' + userData.fullname + '<small>' + userData.company_name + '</small></p>');
