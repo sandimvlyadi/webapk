@@ -160,9 +160,10 @@ $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
   	}
 });
 
-$('#btnSearch').on('click', function(){
+function scan()
+{
 	Android.scanBarcode();
-});
+}
 
 // $('#btnSearch').click(function(){
 // 	var keyword = $('input[name="Search[keyword]"]').val();
