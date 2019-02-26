@@ -62,6 +62,9 @@ $('#login-form button').click(function(){
 				// console.log(response.data);
 				window.localStorage.setItem('user_data', JSON.stringify(response.data));
 				window.localStorage.setItem('token_data', JSON.stringify(response.token));
+				window.localStorage.setItem('testing_data', JSON.stringify(response.testing));
+				window.localStorage.setItem('calibration_data', JSON.stringify(response.calibration));
+				window.localStorage.setItem('certification_data', JSON.stringify(response.certification));
 				window.location.replace(response.target);
 			} else{
 				fmDanger(response.msg);

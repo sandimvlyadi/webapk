@@ -152,6 +152,12 @@ $('#btnSaveCompanyCode').click(function(){
 			userData.company_code = response.company_code;
 			userData.company_name = response.company_name;
 			window.localStorage.setItem('user_data', JSON.stringify(userData));
+			window.localStorage.setItem('testing_data', JSON.stringify(response.testing));
+			window.localStorage.setItem('calibration_data', JSON.stringify(response.calibration));
+			window.localStorage.setItem('certification_data', JSON.stringify(response.certification));
+			testData = JSON.parse(window.localStorage.getItem('testing_data'));
+			caliData = JSON.parse(window.localStorage.getItem('calibration_data'));
+			certData = JSON.parse(window.localStorage.getItem('certification_data'));
 
 			$('body div').show();
 			$('.loading').remove();

@@ -203,11 +203,11 @@
                     </div>
                 </div>
                 <!-- search form -->
-                <form action="#" method="get" class="sidebar-form">
+                <form class="sidebar-form flat">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <input type="text" name="Search[keyword]" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
-                            <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                            <button type="button" name="search" id="btnSearch" class="btn btn-flat"><i class="fa fa-search"></i>
                             </button>
                         </span>
                     </div>
@@ -216,9 +216,35 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active"><a href="../../pages/dashboard/dashboard.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                    <li><a href="../../pages/profile/profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-                    <li><a href="#signout"><i class="fa fa-power-off text-danger"></i> <span class="text-danger">Sign out</span></a></li>
+                    <li class="active">
+                    	<a href="../../pages/dashboard/dashboard.html">
+                    		<i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    	</a>
+                    </li>
+                    <li class="treeview">
+			          	<a href="#">
+				            <i class="fa fa-calendar-check-o"></i>
+				            <span>Work Order</span>
+				            <span class="pull-right-container">
+				              	<i class="fa fa-angle-left pull-right"></i>
+				            </span>
+			          	</a>
+			          	<ul class="treeview-menu">
+				            <li><a href="../../pages/testing/testing.html"><i class="fa fa-circle-o"></i> Testing</a></li>
+				            <li><a href="../../pages/calibration/calibration.html"><i class="fa fa-circle-o"></i> Calibration</a></li>
+				            <li><a href="../../pages/certification/certification.html"><i class="fa fa-circle-o"></i> Certification</a></li>
+			          	</ul>
+			        </li>
+                    <li>
+                    	<a href="../../pages/profile/profile.html">
+                    		<i class="fa fa-user"></i> <span>Profile</span>
+                    	</a>
+                    </li>
+                    <li>
+                    	<a href="#signout">
+                    		<i class="fa fa-power-off text-danger"></i> <span class="text-danger">Sign out</span>
+                    	</a>
+                    </li>
                 </ul>
             </section>
             <!-- /.sidebar -->
