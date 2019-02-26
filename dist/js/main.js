@@ -160,7 +160,7 @@ $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
   	}
 });
 
- $('#btnSearch').click(function(){
+$('#btnSearch').click(function(){
  	var keyword = $('input[name="Search[keyword]"]').val();
  	if (keyword == '') {
  		fmWarning('Search keyword cannot be empty.');
@@ -232,7 +232,7 @@ $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
  	window.localStorage.setItem('sFound', JSON.stringify(sFound));
 
  	window.location.replace('../../pages/search/search.html');
- });
+});
 
 $('body div').hide();
 $('body').prepend(pleasewait);
