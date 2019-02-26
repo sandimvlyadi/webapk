@@ -160,84 +160,79 @@ $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
   	}
 });
 
-function scan()
-{
-	Android.scanBarcode();
-}
+ $('#btnSearch').click(function(){
+ 	var keyword = $('input[name="Search[keyword]"]').val();
+ 	if (keyword == '') {
+ 		fmWarning('Search keyword cannot be empty.');
+ 		return;
+ 	}
+ 	var sKeyword = keyword;
+ 	var sFound = 0;
+ 	keyword = keyword.toLowerCase();
 
-// $('#btnSearch').click(function(){
-// 	var keyword = $('input[name="Search[keyword]"]').val();
-// 	if (keyword == '') {
-// 		fmWarning('Search keyword cannot be empty.');
-// 		return;
-// 	}
-// 	var sKeyword = keyword;
-// 	var sFound = 0;
-// 	keyword = keyword.toLowerCase();
+ 	$('body div').hide();
+ 	$('body').prepend(pleasewait);
 
-// 	$('body div').hide();
-// 	$('body').prepend(pleasewait);
+ 	window.localStorage.removeItem('sTest');
+ 	window.localStorage.removeItem('sCali');
+ 	window.localStorage.removeItem('sCert');
+ 	window.localStorage.removeItem('sKeyword');
+ 	window.localStorage.removeItem('sFound');
 
-// 	window.localStorage.removeItem('sTest');
-// 	window.localStorage.removeItem('sCali');
-// 	window.localStorage.removeItem('sCert');
-// 	window.localStorage.removeItem('sKeyword');
-// 	window.localStorage.removeItem('sFound');
+ 	var sTest = Array();
+ 	var sCali = Array();
+ 	var sCert = Array();
 
-// 	var sTest = Array();
-// 	var sCali = Array();
-// 	var sCert = Array();
+ 	for(var x in testData){
+ 		$.each(testData[x], function(key, data){
+ 			if (data != null) {
+ 				if (data.toLowerCase().indexOf(keyword) >= 0) {
+ 					sTest.push(testData[x]);
+ 					sFound = sFound + 1;
+ 					return false;
+ 				}
+ 			}
+ 		})
+ 	}
 
-// 	for(var x in testData){
-// 		$.each(testData[x], function(key, data){
-// 			if (data != null) {
-// 				if (data.toLowerCase().indexOf(keyword) >= 0) {
-// 					sTest.push(testData[x]);
-// 					sFound = sFound + 1;
-// 					return false;
-// 				}
-// 			}
-// 		})
-// 	}
+ 	for(var x in caliData){
+ 		$.each(caliData[x], function(key, data){
+ 			if (data != null) {
+ 				if (data.toLowerCase().indexOf(keyword) >= 0) {
+ 					sCali.push(caliData[x]);
+ 					sFound = sFound + 1;
+ 					return false;
+ 				}
+ 			}
+ 		})
+ 	}
 
-// 	for(var x in caliData){
-// 		$.each(caliData[x], function(key, data){
-// 			if (data != null) {
-// 				if (data.toLowerCase().indexOf(keyword) >= 0) {
-// 					sCali.push(caliData[x]);
-// 					sFound = sFound + 1;
-// 					return false;
-// 				}
-// 			}
-// 		})
-// 	}
+ 	for(var x in certData){
+ 		$.each(certData[x], function(key, data){
+ 			if (data != null) {
+ 				if (data.toLowerCase().indexOf(keyword) >= 0) {
+ 					sCert.push(certData[x]);
+ 					sFound = sFound + 1;
+ 					return false;
+ 				}
+ 			}
+ 		})
+ 	}
 
-// 	for(var x in certData){
-// 		$.each(certData[x], function(key, data){
-// 			if (data != null) {
-// 				if (data.toLowerCase().indexOf(keyword) >= 0) {
-// 					sCert.push(certData[x]);
-// 					sFound = sFound + 1;
-// 					return false;
-// 				}
-// 			}
-// 		})
-// 	}
+ 	if (sTest.length > 0) {
+ 		window.localStorage.setItem('sTest', JSON.stringify(sTest));
+ 	}
+ 	if (sCali.length > 0) {
+ 		window.localStorage.setItem('sCali', JSON.stringify(sCali));
+ 	}
+ 	if (sCert.length > 0) {
+ 		window.localStorage.setItem('sCert', JSON.stringify(sCert));
+ 	}
+ 	window.localStorage.setItem('sKeyword', JSON.stringify(sKeyword));
+ 	window.localStorage.setItem('sFound', JSON.stringify(sFound));
 
-// 	if (sTest.length > 0) {
-// 		window.localStorage.setItem('sTest', JSON.stringify(sTest));
-// 	}
-// 	if (sCali.length > 0) {
-// 		window.localStorage.setItem('sCali', JSON.stringify(sCali));
-// 	}
-// 	if (sCert.length > 0) {
-// 		window.localStorage.setItem('sCert', JSON.stringify(sCert));
-// 	}
-// 	window.localStorage.setItem('sKeyword', JSON.stringify(sKeyword));
-// 	window.localStorage.setItem('sFound', JSON.stringify(sFound));
-
-// 	window.location.replace('../../pages/search/search.html');
-// });
+ 	window.location.replace('../../pages/search/search.html');
+ });
 
 $('body div').hide();
 $('body').prepend(pleasewait);
