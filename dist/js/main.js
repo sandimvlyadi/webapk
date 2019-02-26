@@ -160,7 +160,7 @@ $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
   	}
 });
 
-$('#btnSearch').click(function(){
+$('#btnSearch').on('click', function(){
 	Android.scanBarcode();
 });
 
