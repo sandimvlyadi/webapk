@@ -157,7 +157,11 @@ $('#btnQr').click(function(){
 
 function qrCodeScannerResult(barcode)
 {
-	$('input[name="Search[keyword]"]').val(barcode);
+	if (barcode != '') {
+		$('input[name="Search[keyword]"]').val(barcode);
+		$('input[name="Search[keyword]"]').focus();
+		$('#btnSearch').trigger('click');
+	}
 }
 
 $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
