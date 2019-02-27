@@ -1,4 +1,5 @@
-var baseurl = 'http://192.168.5.122/webapi/';
+var baseurl = 'http://sisfo.bbt.kemenperin.go.id/webapi/';
+// var baseurl = 'http://192.168.5.122/webapi/';
 // var baseurl = 'http://192.168.42.140/webapi/';
 
 var onlineStatus = '<div id="onlineStatusMsg" class="fm fm-top fm-danger">You\'re not connected to server.</div>';
@@ -16,7 +17,7 @@ $.ajaxSetup({
 
 function actionWhenOnline()
 {
-	if (userData != null) {
+	if (userData != null && userData.display_picture != '') {
 		$('.user-header img').attr('src', userData.display_picture);
 		$('.user-menu a img').attr('src', userData.display_picture);
 		$('.user-panel .image img').attr('src', userData.display_picture);
