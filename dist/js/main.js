@@ -152,10 +152,13 @@ $('#btnSignOut, a[href="#signout"]').click(function(){
 });
 
 $('#btnQr').click(function(){
-	// fmWarning('Coming soon.');
-	var asdf = window.Android.scanBarcode();
-	fmWarning(asdf);
+	window.Android.scanBarcode();
 });
+
+function qrCodeScannerResult(barcode)
+{
+	$('input[name="Search[keyword]"]').val(barcode);
+}
 
 $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
 	var keyCode = e.keyCode || e.which;
