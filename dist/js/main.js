@@ -151,6 +151,12 @@ $('#btnSignOut, a[href="#signout"]').click(function(){
 	window.location.replace('../../pages/login/login.html');
 });
 
+$('#btnQr').click(function(){
+	// fmWarning('Coming soon.');
+	var asdf = window.Android.scanBarcode();
+	fmWarning(asdf);
+});
+
 $('input[name="Search[keyword]"]').on('keyup keypress', function(e){
 	var keyCode = e.keyCode || e.which;
   	if (keyCode === 13) { 
