@@ -9,22 +9,16 @@ function generateTableTesting()
 	// redraw heading table
 	$('#tableTesting thead tr th').remove();
 	$('#tableTesting thead tr').append('<th>No.</th>');
-	$('#tableTesting thead tr').append('<th>Invoice Number</th>');
-	$('#tableTesting thead tr').append('<th>Order Number</th>');
-	$('#tableTesting thead tr').append('<th>Finance</th>');
-	$('#tableTesting thead tr').append('<th>Status</th>');
-	$('#tableTesting thead tr').append('<th>Value</th>');
+	$('#tableTesting thead tr').append('<th>Work Order</th>');
+	$('#tableTesting thead tr').append('<th>Check Detail</th>');
 
 	// draw content table
 	$i = 1;
 	for(var x in sTestData){
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
-		row.append('<td>'+ sTestData[x].kd_invoice +'</td>');
-		row.append('<td>'+ sTestData[x].kd_pemesanan +'</td>');
-		row.append('<td>'+ sTestData[x].status_keuangan +'</td>');
-		row.append('<td>'+ sTestData[x].status_pemesanan +'</td>');
-		row.append('<td>IDR. '+ setIDR(sTestData[x].total_bayar) +'</td>');
+		row.append('<td>'+ testData[x].kd_pemesanan +'</td>');
+		row.append('<td><button id="'+ testData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
 		$('#tableTesting tbody').append(row);
 		$i = $i + 1;
 	}
@@ -35,22 +29,16 @@ function generateTableCalibration()
 	// redraw heading table
 	$('#tableCalibration thead tr th').remove();
 	$('#tableCalibration thead tr').append('<th>No.</th>');
-	$('#tableCalibration thead tr').append('<th>Invoice Number</th>');
-	$('#tableCalibration thead tr').append('<th>Order Number</th>');
-	$('#tableCalibration thead tr').append('<th>Finance</th>');
-	$('#tableCalibration thead tr').append('<th>Status</th>');
-	$('#tableCalibration thead tr').append('<th>Value</th>');
+	$('#tableCalibration thead tr').append('<th>Work Order</th>');
+	$('#tableCalibration thead tr').append('<th>Check Detail</th>');
 
 	// draw content table
 	$i = 1;
 	for(var x in sCaliData){
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
-		row.append('<td>'+ sCaliData[x].kd_invoice +'</td>');
-		row.append('<td>'+ sCaliData[x].kd_pemesanan +'</td>');
-		row.append('<td>'+ sCaliData[x].status_keuangan +'</td>');
-		row.append('<td>'+ sCaliData[x].status_pemesanan +'</td>');
-		row.append('<td>IDR. '+ setIDR(sCaliData[x].total_bayar) +'</td>');
+		row.append('<td>'+ caliData[x].kd_pemesanan +'</td>');
+		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
 		$('#tableCalibration tbody').append(row);
 		$i = $i + 1;
 	}
@@ -61,24 +49,103 @@ function generateTableCertification()
 	// redraw heading table
 	$('#tableCertification thead tr th').remove();
 	$('#tableCertification thead tr').append('<th>No.</th>');
-	$('#tableCertification thead tr').append('<th>Invoice Number</th>');
-	$('#tableCertification thead tr').append('<th>Order Number</th>');
-	$('#tableCertification thead tr').append('<th>Status</th>');
-	$('#tableCertification thead tr').append('<th>Value</th>');
+	$('#tableCertification thead tr').append('<th>Work Order</th>');
+	$('#tableCertification thead tr').append('<th>Check Detail</th>');
 
 	// draw content table
 	$i = 1;
 	for(var x in sCertData){
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
-		row.append('<td>'+ sCertData[x].kd_invoice +'</td>');
-		row.append('<td>'+ sCertData[x].kd_sertifikasi +'</td>');
-		row.append('<td>'+ sCertData[x].status_pemesanan +'</td>');
-		row.append('<td>IDR. '+ setIDR(sCertData[x].total_bayar) +'</td>');
+		row.append('<td>'+ certData[x].kd_sertifikasi +'</td>');
+		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
 		$('#tableCertification tbody').append(row);
 		$i = $i + 1;
 	}
 }
+
+$('#tableTesting').on('click', '.btn-success', function(){
+	var id = $(this).attr('id');
+	for(var x in testData){
+		if (testData[x].id_pemesanan == id) {
+			$('.box:eq(2) input[name="Testing[kd_pemesanan]"]').val(testData[x].kd_pemesanan);
+			$('.box:eq(2) input[name="Testing[status_pemesanan]"]').val(testData[x].status_pemesanan);
+			$('.box:eq(2) input[name="Testing[status_keuangan]"]').val(testData[x].status_keuangan);
+			$('.box:eq(2) input[name="Testing[total_bayar]"]').val(setIDR(testData[x].total_bayar));
+			$('.box:eq(2) input[name="Testing[tgl_masuk]"]').val(testData[x].tgl_masuk);
+			$('.box:eq(2) input[name="Testing[tgl_perkiraan]"]').val(testData[x].tgl_perkiraan);
+			$('.box:eq(2) input[name="Testing[tgl_selesai]"]').val(testData[x].tgl_selesai);
+			$('.box:eq(2) input[name="Testing[atas_nama]"]').val(testData[x].atas_nama);
+			$('.box:eq(2) input[name="Testing[bahasa]"]').val(testData[x].bahasa);
+			$('.box:eq(2) input[name="Testing[dengan]"]').val(testData[x].dengan);
+			$('.box:eq(2) input[name="Testing[pengambilan]"]').val(testData[x].pengambilan);
+			$('.box:eq(2) input[name="Testing[kondisi]"]').val(testData[x].kondisi);
+			$('.box:eq(2) input[name="Testing[sifat]"]').val(testData[x].sifat);
+		}
+	}
+
+	$('.box:eq(2)').slideDown();
+	$('.box:eq(1)').slideUp();
+});
+
+$('.box:eq(2) .box-header').on('click', '.btn-default', function(){
+	$('.box:eq(1)').slideDown();
+	$('.box:eq(2)').slideUp();
+});
+
+$('#tableCalibration').on('click', '.btn-success', function(){
+	var id = $(this).attr('id');
+	for(var x in caliData){
+		if (caliData[x].id_pemesanan == id) {
+			$('.box:eq(4) input[name="Calibration[kd_pemesanan]"]').val(caliData[x].kd_pemesanan);
+			$('.box:eq(4) input[name="Calibration[status_pemesanan]"]').val(caliData[x].status_pemesanan);
+			$('.box:eq(4) input[name="Calibration[status_keuangan]"]').val(caliData[x].status_keuangan);
+			$('.box:eq(4) input[name="Calibration[total_bayar]"]').val(setIDR(caliData[x].total_bayar));
+			$('.box:eq(4) input[name="Calibration[tgl_masuk]"]').val(caliData[x].tgl_masuk);
+			$('.box:eq(4) input[name="Calibration[tgl_perkiraan]"]').val(caliData[x].tgl_perkiraan);
+			$('.box:eq(4) input[name="Calibration[tgl_selesai]"]').val(caliData[x].tgl_selesai);
+			$('.box:eq(4) input[name="Calibration[atas_nama]"]').val(caliData[x].atas_nama);
+			$('.box:eq(4) input[name="Calibration[bahasa]"]').val(caliData[x].bahasa);
+			$('.box:eq(4) input[name="Calibration[dengan]"]').val(caliData[x].dengan);
+			$('.box:eq(4) input[name="Calibration[pengambilan]"]').val(caliData[x].pengambilan);
+			$('.box:eq(4) input[name="Calibration[kondisi]"]').val(caliData[x].kondisi);
+			$('.box:eq(4) input[name="Calibration[sifat]"]').val(caliData[x].sifat);
+		}
+	}
+
+	$('.box:eq(4)').slideDown();
+	$('.box:eq(3)').slideUp();
+});
+
+$('.box:eq(4) .box-header').on('click', '.btn-default', function(){
+	$('.box:eq(3)').slideDown();
+	$('.box:eq(4)').slideUp();
+});
+
+$('#tableCertification').on('click', '.btn-success', function(){
+	var id = $(this).attr('id');
+	for(var x in certData){
+		if (certData[x].id_wo_sertifikasi == id) {
+			$('.box:eq(6) input[name="Certification[kd_sertifikasi]"]').val(certData[x].kd_sertifikasi);
+			$('.box:eq(6) input[name="Certification[status_pemesanan]"]').val(certData[x].status_pemesanan);
+			$('.box:eq(6) input[name="Certification[total_bayar]"]').val(setIDR(certData[x].total_bayar));
+			$('.box:eq(6) input[name="Certification[tgl_m]"]').val(certData[x].tgl_m);
+			$('.box:eq(6) input[name="Certification[nama_pemohon]"]').val(certData[x].nama_pemohon);
+			$('.box:eq(6) input[name="Certification[kewarganegaraan]"]').val(certData[x].kewarganegaraan);
+			$('.box:eq(6) input[name="Certification[telp_pemohon]"]').val(certData[x].telp_pemohon);
+			$('.box:eq(6) input[name="Certification[jabatan]"]').val(certData[x].jabatan);
+			$('.box:eq(6) input[name="Certification[alamat_pemohon]"]').val(certData[x].alamat_pemohon);
+		}
+	}
+
+	$('.box:eq(6)').slideDown();
+	$('.box:eq(5)').slideUp();
+});
+
+$('.box:eq(6) .box-header').on('click', '.btn-default', function(){
+	$('.box:eq(5)').slideDown();
+	$('.box:eq(6)').slideUp();
+});
 
 $(document).ready(function(){
 	if (sTestData != null) {
@@ -108,4 +175,8 @@ $(document).ready(function(){
 
 	$('body div').show();
 	$('.loading').remove();
+
+	$('.box:eq(2)').fadeOut('fast');
+	$('.box:eq(4)').fadeOut('fast');
+	$('.box:eq(6)').fadeOut('fast');
 });
