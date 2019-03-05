@@ -25,7 +25,7 @@ function generateTable()
 		statusPemesanan.append(certData[x].status_pemesanan);
 		tD.append(statusPemesanan)
 		row.append(tD);
-		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
+		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-xs btn-flat">Detail</button></td>');
 		$('#tableCertification tbody').append(row);
 		$i = $i + 1;
 	}

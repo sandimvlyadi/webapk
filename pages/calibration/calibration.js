@@ -25,7 +25,7 @@ function generateTable()
 		statusPemesanan.append(caliData[x].status_pemesanan);
 		tD.append(statusPemesanan)
 		row.append(tD);
-		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
+		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-xs btn-flat">Detail</button></td>');
 		$('#tableCalibration tbody').append(row);
 		$i = $i + 1;
 	}
