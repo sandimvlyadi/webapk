@@ -4,7 +4,8 @@ function generateTable()
 	$('#tableCalibration thead tr th').remove();
 	$('#tableCalibration thead tr').append('<th>No.</th>');
 	$('#tableCalibration thead tr').append('<th>Work Order</th>');
-	$('#tableCalibration thead tr').append('<th>Check Detail</th>');
+	$('#tableCalibration thead tr').append('<th>Status</th>');
+	$('#tableCalibration thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -12,7 +13,19 @@ function generateTable()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ caliData[x].kd_pemesanan +'</td>');
-		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (caliData[x].status_pemesanan == 'Belum Lengkap') {
+			statusPemesanan = $('<div class="label label-danger">');
+		} else if (caliData[x].status_pemesanan == 'Pekerjaan Selesai') {
+			statusPemesanan = $('<div class="label label-success">');
+		} else{
+			statusPemesanan = $('<div class="label label-info">');
+		}
+		statusPemesanan.append(caliData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableCalibration tbody').append(row);
 		$i = $i + 1;
 	}

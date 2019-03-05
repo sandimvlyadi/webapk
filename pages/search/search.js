@@ -10,7 +10,8 @@ function generateTableTesting()
 	$('#tableTesting thead tr th').remove();
 	$('#tableTesting thead tr').append('<th>No.</th>');
 	$('#tableTesting thead tr').append('<th>Work Order</th>');
-	$('#tableTesting thead tr').append('<th>Check Detail</th>');
+	$('#tableTesting thead tr').append('<th>Status</th>');
+	$('#tableTesting thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -18,7 +19,19 @@ function generateTableTesting()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ testData[x].kd_pemesanan +'</td>');
-		row.append('<td><button id="'+ testData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (testData[x].status_pemesanan == 'Belum Lengkap') {
+			statusPemesanan = $('<div class="label label-danger">');
+		} else if (testData[x].status_pemesanan == 'Pekerjaan Selesai') {
+			statusPemesanan = $('<div class="label label-success">');
+		} else{
+			statusPemesanan = $('<div class="label label-info">');
+		}
+		statusPemesanan.append(testData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ testData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableTesting tbody').append(row);
 		$i = $i + 1;
 	}
@@ -30,7 +43,8 @@ function generateTableCalibration()
 	$('#tableCalibration thead tr th').remove();
 	$('#tableCalibration thead tr').append('<th>No.</th>');
 	$('#tableCalibration thead tr').append('<th>Work Order</th>');
-	$('#tableCalibration thead tr').append('<th>Check Detail</th>');
+	$('#tableCalibration thead tr').append('<th>Status</th>');
+	$('#tableCalibration thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -38,7 +52,19 @@ function generateTableCalibration()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ caliData[x].kd_pemesanan +'</td>');
-		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (sCaliData[x].status_pemesanan == 'Belum Lengkap') {
+			statusPemesanan = $('<div class="label label-danger">');
+		} else if (sCaliData[x].status_pemesanan == 'Pekerjaan Selesai') {
+			statusPemesanan = $('<div class="label label-success">');
+		} else{
+			statusPemesanan = $('<div class="label label-info">');
+		}
+		statusPemesanan.append(sCaliData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ caliData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableCalibration tbody').append(row);
 		$i = $i + 1;
 	}
@@ -50,7 +76,8 @@ function generateTableCertification()
 	$('#tableCertification thead tr th').remove();
 	$('#tableCertification thead tr').append('<th>No.</th>');
 	$('#tableCertification thead tr').append('<th>Work Order</th>');
-	$('#tableCertification thead tr').append('<th>Check Detail</th>');
+	$('#tableCertification thead tr').append('<th>Status</th>');
+	$('#tableCertification thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -58,7 +85,19 @@ function generateTableCertification()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ certData[x].kd_sertifikasi +'</td>');
-		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (certData[x].status_pemesanan == 'Kaji Ulang') {
+			statusPemesanan = $('<div class="label label-info">');
+		} else if (certData[x].status_pemesanan == 'Pembayaran' && statusPemesanan[x].biaya == null) {
+			statusPemesanan = $('<div class="label label-info">');
+		} else{
+			statusPemesanan = $('<div class="label label-success">');
+		}
+		statusPemesanan.append(certData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableCertification tbody').append(row);
 		$i = $i + 1;
 	}
@@ -150,23 +189,41 @@ $('.box:eq(6) .box-header').on('click', '.btn-default', function(){
 $(document).ready(function(){
 	if (sTestData != null) {
 		generateTableTesting();
-		$('#tableTesting').DataTable();
+		$('#tableTesting').DataTable({
+			'ordering'			: false,
+			'filter'			: false,
+			'info'				: false,
+			'bLengthChange' 	: false,
+			'iDisplayLength'	: 5
+		});
 	} else{
 		$('.content .box:eq(1)').addClass('hidden');
 	}
 
 	if (sCaliData != null) {
 		generateTableCalibration();
-		$('#tableCalibration').DataTable();
+		$('#tableCalibration').DataTable({
+			'ordering'			: false,
+			'filter'			: false,
+			'info'				: false,
+			'bLengthChange' 	: false,
+			'iDisplayLength'	: 5
+		});
 	} else{
-		$('.content .box:eq(2)').addClass('hidden');
+		$('.content .box:eq(3)').addClass('hidden');
 	}
 
 	if (sCertData != null) {
 		generateTableCertification();
-		$('#tableCertification').DataTable();
+		$('#tableCertification').DataTable({
+			'ordering'			: false,
+			'filter'			: false,
+			'info'				: false,
+			'bLengthChange' 	: false,
+			'iDisplayLength'	: 5
+		});
 	} else{
-		$('.content .box:eq(3)').addClass('hidden');
+		$('.content .box:eq(5)').addClass('hidden');
 	}
 
 	$('.content .box:eq(0) .box-body p').remove();

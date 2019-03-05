@@ -4,7 +4,8 @@ function generateTable()
 	$('#tableCertification thead tr th').remove();
 	$('#tableCertification thead tr').append('<th>No.</th>');
 	$('#tableCertification thead tr').append('<th>Work Order</th>');
-	$('#tableCertification thead tr').append('<th>Check Detail</th>');
+	$('#tableCertification thead tr').append('<th>Status</th>');
+	$('#tableCertification thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -12,7 +13,19 @@ function generateTable()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ certData[x].kd_sertifikasi +'</td>');
-		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (certData[x].status_pemesanan == 'Kaji Ulang') {
+			statusPemesanan = $('<div class="label label-info">');
+		} else if (certData[x].status_pemesanan == 'Pembayaran' && statusPemesanan[x].biaya == null) {
+			statusPemesanan = $('<div class="label label-info">');
+		} else{
+			statusPemesanan = $('<div class="label label-success">');
+		}
+		statusPemesanan.append(certData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ certData[x].id_wo_sertifikasi +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableCertification tbody').append(row);
 		$i = $i + 1;
 	}

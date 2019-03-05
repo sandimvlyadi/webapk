@@ -4,7 +4,8 @@ function generateTable()
 	$('#tableTesting thead tr th').remove();
 	$('#tableTesting thead tr').append('<th>No.</th>');
 	$('#tableTesting thead tr').append('<th>Work Order</th>');
-	$('#tableTesting thead tr').append('<th>Check Detail</th>');
+	$('#tableTesting thead tr').append('<th>Status</th>');
+	$('#tableTesting thead tr').append('<th>Detail</th>');
 
 	// draw content table
 	$i = 1;
@@ -12,7 +13,19 @@ function generateTable()
 		var row = $('<tr>');
 		row.append('<td>'+ $i +'</td>');
 		row.append('<td>'+ testData[x].kd_pemesanan +'</td>');
-		row.append('<td><button id="'+ testData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Check Detail</button></td>');
+		var tD = $('<td>');
+		var statusPemesanan = '';
+		if (testData[x].status_pemesanan == 'Belum Lengkap') {
+			statusPemesanan = $('<div class="label label-danger">');
+		} else if (testData[x].status_pemesanan == 'Pekerjaan Selesai') {
+			statusPemesanan = $('<div class="label label-success">');
+		} else{
+			statusPemesanan = $('<div class="label label-info">');
+		}
+		statusPemesanan.append(testData[x].status_pemesanan);
+		tD.append(statusPemesanan)
+		row.append(tD);
+		row.append('<td><button id="'+ testData[x].id_pemesanan +'" type="button" class="btn btn-success btn-flat">Detail</button></td>');
 		$('#tableTesting tbody').append(row);
 		$i = $i + 1;
 	}
