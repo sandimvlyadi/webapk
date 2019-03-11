@@ -287,12 +287,13 @@ $('#tableProsesPengujian').on('click', '.btn-success', function(){
 			console.log(jqXHR);
 			fmDanger('Tidak terhubung dengan server.');
 		}
+	})
+	.always(function(){
+	    $(this).removeAttr('disabled');
+
+        $('.content .box:eq(1)').show();
+        $('.loading').remove();
 	});
-
-	$(this).removeAttr('disabled');
-
-	$('.content .box:eq(1)').show();
-	$('.loading').remove();
 });
 
 $('#tableProsesPengujian').on('click', '.btn-danger', function(){
