@@ -8,7 +8,7 @@
 
 @keyframes glowtext {
     0% {
-    	color: #FFFFFF;     
+    	color: #808080;     
     }	
 
     50% {
@@ -16,7 +16,7 @@
     }	
   
     100% {
-    	color: #808080;     
+    	color: #FFFFFF;     
     }	
 }
 
