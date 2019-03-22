@@ -1,70 +1,85 @@
-function generateTable()
-{
-	// redraw heading table
-	$('#tablePekerjaanPengujian thead tr th').remove();
-	$('#tablePekerjaanPengujian thead tr').append('<th>No.</th>');
-	$('#tablePekerjaanPengujian thead tr').append('<th>Work Order</th>');
-	$('#tablePekerjaanPengujian thead tr').append('<th>Status</th>');
-	$('#tablePekerjaanPengujian thead tr').append('<th>Aksi</th>');
+var table = '';
 
-	// redraw body table
-	$('#tablePekerjaanPengujian tbody tr').remove();
-	$.get(baseurl + 'ajax_service/load?request=c6292a262b9396a50ec6ff2dc43fd6c8&id_user='+ tokenData.id_user +'&token='+ tokenData.token, function(response){
-		if (response.result) {
-			var data = response.data;
-			var tBody = $('#tablePekerjaanPengujian tbody');
-			var tR = $('<tr>');
-			var i = 1;
-			for(var x in data){
-				tR.append('<td>'+ i +'</td>');
-				tR.append('<td>'+ data[x].kd_pemesanan +'</td>');
-				var tD = $('<td>');
-				var statusPengerjaan = '';
-				if (data[x].status_pengerjaan == 'Belum Dibagikan') {
-					statusPengerjaan = $('<div class="label label-danger">');
-				} else if (data[x].status_pengerjaan == 'Selesai') {
-					statusPengerjaan = $('<div class="label label-success">');
-				} else{
-					statusPengerjaan = $('<div class="label label-info">');
-				}
-				statusPengerjaan.append(data[x].status_pengerjaan);
-				tD.append(statusPengerjaan);
-				tR.append(tD);
-				if (data[x].status_pengerjaan == 'Belum Dibagikan') {
-					tR.append('<td><button id="'+ data[x].id_pemesanan +'" type="button" class="btn btn-success btn-sm btn-flat"><i class="fa fa-check"></i></button></td>');
-				} else{
-					tR.append('<td></td>');
-				}
-				tBody.append(tR);
-				tR = $('<tr>');
-				i = i + 1;
-			}
-		} else{
-			fmWarning(response.msg);
-		}
-	}, 'json')
-	.done(function(){
-		$('#tablePekerjaanPengujian').DataTable({
-			'ordering'			: false,
-			'bLengthChange' 	: false,
-			'pagingType'		: 'full',
-			'iDisplayLength'	: 5
-		});
-		$('.dataTables_filter').addClass('pull-left');
-	})
-	.fail(function(jqXHR, textStatus, errorThrown){
-		console.log(jqXHR);
-	})
-	.always(function(){
-		$('.content div').show();
-		$('.loading').remove();
+$(document).ready(function(){
+	table = $('#tablePekerjaanPengujian').DataTable({
+		'processing'	: true, 
+        'serverSide'	: true, 
+        
+        'ajax' : {
+        	'url'	: baseurl + 'source',
+            'type'	: 'GET',
+            'data'	: {
+                'id_user'	: tokenData.id_user,
+                'token'		: tokenData.token,
+                'user'		: 'employee',
+                'request'	: '674e1717496617e5a1c88c697ce912fd'
+            },
+            'dataSrc' : function(response){
+            	var i = response.start;
+            	var row = new Array();
+            	if (response.result) {
+            		for(var x in response.data){
+            			var status_pengerjaan = '';
+            			if (response.data[x].status_pengerjaan == 'Belum Dibagikan') {
+            				status_pengerjaan = '<div class="label label-danger">Belum Dibagikan</div>';
+            			} else if (response.data[x].status_pengerjaan == 'Selesai') {
+            				status_pengerjaan = '<div class="label label-success">Selesai</div>';
+            			} else{
+            				status_pengerjaan = '<div class="label label-info">'+ response.data[x].status_pengerjaan +'</div>';
+            			}
+
+            			var button = '';
+            			if (response.data[x].status_pengerjaan == 'Belum Dibagikan') {
+            				button = '<button id="'+ response.data[x].id_pemesanan +'" type="button" class="btn btn-success btn-sm btn-flat"><i class="fa fa-check"></i></button>';
+            			}
+
+	            		row.push({
+	            			'no'				: i,
+	            			'kd_pemesanan'		: response.data[x].kd_pemesanan,
+	            			'status_pengerjaan'	: status_pengerjaan,
+	            			'id_pemesanan'		: button
+	            		});
+	            		i = i + 1;
+	            	}
+
+	            	response.data = row;
+            		return row;
+            	} else{
+            		response.draw = 0;
+            		return [];
+            	}
+            }
+        },
+
+        'columns' : [
+        	{ 'data' : 'no' },
+        	{ 'data' : 'kd_pemesanan' },
+        	{ 'data' : 'status_pengerjaan' },
+        	{ 'data' : 'id_pemesanan' }
+        ],
+
+        'pageLength'	: 5,
+        'pagingType'	: 'full',
+        'ordering'		: false,
+        'bLengthChange'	: false,
+
+        'language': {
+	    	'emptyTable'	: 'Tidak ada data tersedia.',
+	    	'info'			: '_START_ sampai _END_ dari _TOTAL_ data ',
+	    	'infoFiltered'	: 'total: _MAX_.',
+	    	'infoEmpty'		: '',
+            'processing'    : '<img class="imageRotateHorizontal" src="../../favicon.ico" />'
+	    }
 	});
-}
+	$('.dataTables_filter').addClass('pull-left');
+    $('#tablePekerjaanPengujian_processing').css('background', 'none');
+    $('#tablePekerjaanPengujian_processing').css('border', 'none');
+
+	$('body div').show();
+	$('.loading').remove();
+});
 
 $('#tablePekerjaanPengujian').on('click', '.btn-success', function(){
-	$('.content div').hide();
-	$('.content').prepend(pleasewait);
-
 	$(this).attr('disabled', 'disabled');
 	var id = $(this).attr('id');
 
@@ -75,30 +90,16 @@ $('#tablePekerjaanPengujian').on('click', '.btn-success', function(){
 	},
 	function(response){
 		if (response.result) {
-			sessionStorage.setItem('msgResult', response.result);
-			sessionStorage.setItem('msg', response.msg);
-			window.location.reload();
+			fmSuccess(response.msg);
+			table.ajax.reload(null, false);
 		} else{
 			fmDanger(response.msg);
+            $(this).removeAttr('disabled');
 		}
 	}, 'json')
 	.fail(function(jqXHR, textStatus, errorThrown){
 		console.log(jqXHR);
 		fmDanger('Tidak terhubung dengan server.');
+        $(this).removeAttr('disabled');
 	});
-
-	$(this).removeAttr('disabled');
-
-	$('.content div').show();
-	$('.loading').remove();
-});
-
-$(document).ready(function(){
-	generateTable();
-
-	$('body div').show();
-	$('.loading').remove();
-
-	$('.content div').hide();
-	$('.content').prepend(pleasewait);
 });

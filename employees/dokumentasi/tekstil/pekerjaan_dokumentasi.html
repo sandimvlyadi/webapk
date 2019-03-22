@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Silateks | Pekerjaan Pengujian</title>
+    <title>Silateks | Pekerjaan Dokumentasi</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
@@ -47,7 +47,7 @@
                         <div class="navbar-custom-menu" style="float: left; font-size: 18px; font-weight: bold;">
                             <ul class="nav navbar-nav">
                                 <li class="dropdown">
-                                    <a href="">Pekerjaan Pengujian</a>
+                                    <a href="">Dokumentasi</a>
                                 </li>
                             </ul>
                         </div>
@@ -91,10 +91,10 @@
             <section class="content">
                 <div class="box box-success flat">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Pekerjaan Pengujian</h3>
+                        <h3 class="box-title">Pekerjaan Dokumentasi</h3>
                     </div>
                     <div class="box-body">
-                        <table id="tablePekerjaanPengujian" class="table table-sm table-bordered table-striped table-hover">
+                        <table id="tablePekerjaanDokumentasi" class="table table-sm table-bordered table-striped table-hover">
                             <thead>
                                 <tr>
                                     <th>No.</th>
@@ -107,6 +107,111 @@
                                 
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="box box-success flat">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Data Hasil Pengujian</h3>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-default btn-xs btn-flat"><i class="fa fa-arrow-circle-o-left"></i> Back</button>
+                        </div>
+                    </div>
+                    <div class="box-body with-border">
+                        <div class="form-group">
+                            <label>Nomor WO</label>
+                            <input type="text" name="Dokumentasi[nomor_wo]" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label>Nama Pelanggan</label>
+                            <input type="text" name="Dokumentasi[nama_pelanggan]" class="form-control" readonly="readonly">
+                        </div>
+                        <div class="form-group">
+                            <label>Data Parameter Uji</label>
+                            <div class="table-responsive">
+                                <table id="tableDataParameterUji" class="table table-sm table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Contoh</th>
+                                            <th>Kategori</th>
+                                            <th>Nama Uji</th>
+                                            <th>Metoda</th>
+                                            <th>Status Dokumen</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Hal. Gabungan</label>
+                            <div class="table-responsive">
+                                <table id="tableLampiranGabungan" class="table table-sm table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nama Customer</th>
+                                            <th>Lampiran Gabungan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                            <label>File Upload:</label>
+                            <input id="0" type="file" name="Dokumentasi[upload_lampiran]" class="form-control" accept="application/msword, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label>Hal. Lampiran Uji</label>
+                            <div class="table-responsive">
+                                <table id="tableLampiranUji" class="table table-sm table-bordered table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Kategori</th>
+                                            <th>Nama Uji</th>
+                                            <th>Analis / Teknisi</th>
+                                            <th>Status</th>
+                                            <th>Lampiran</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <input type="hidden" name="Dokumentasi[id]" value="0">
+                        <input type="hidden" name="Dokumentasi[id_sertifikat]" value="0">
+                        <button id="0" type="button" class="btn btn-success btn-sm btn-flat">Selesai</button>
+                    </div>
+                </div>
+
+                <div class="box box-success flat">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Isian Dokumen</h3>
+                    </div>
+                    <div class="box-body with-border">
+                        <div class="form-group">
+                            <label>Merek</label>
+                            <input type="text" name="Dokumentasi[merek]" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Tipe / Model</label>
+                            <textarea name="Dokumentasi[tipe_model]" class=" form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <button id="0" type="button" class="btn btn-success btn-sm btn-flat">Simpan</button>
+                        <button type="button" class="btn btn-danger btn-sm btn-flat">Batal</button>
                     </div>
                 </div>
             </section>
@@ -138,9 +243,9 @@
     <script src="../../../dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="../../../dist/js/demo.js"></script>
-    <!-- Pekerjaan Pengujian JS -->
+    <!-- Pekerjaan Dokumentasi JS -->
 	<script src="../../../dist/js/main.employees.js"></script>
-	<script src="./pekerjaan_pengujian.js"></script>
+	<script src="./pekerjaan_dokumentasi.js"></script>
 </body>
 
 </html>
