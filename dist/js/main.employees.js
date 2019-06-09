@@ -1,7 +1,7 @@
 var baseurl = 'http://sisfo.bbt.kemenperin.go.id/webapi/';
 // var baseurl = 'http://192.168.5.122/webapi/';
 // var baseurl = 'http://192.168.42.140/webapi/';
-//var baseurl = 'http://localhost/webapi/';
+// var baseurl = 'http://localhost/webapi/';
 
 var onlineStatus = '<div id="onlineStatusMsg" class="fm fm-top fm-danger">You\'re not connected to server.</div>';
 var pleasewait = '<div class="loading"><img class="imageRotateHorizontal" src="../../favicon.ico" /><p>Please Wait</p></div>';

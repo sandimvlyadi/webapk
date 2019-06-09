@@ -17,7 +17,7 @@ function generateTable()
 		var statusPemesanan = '';
 		if (certData[x].status_pemesanan == 'Kaji Ulang') {
 			statusPemesanan = $('<div class="label label-info">');
-		} else if (certData[x].status_pemesanan == 'Pembayaran' && statusPemesanan[x].biaya == null) {
+		} else if (certData[x].status_pemesanan == 'Pembayaran' && certData[x].biaya == null) {
 			statusPemesanan = $('<div class="label label-info">');
 		} else{
 			statusPemesanan = $('<div class="label label-success">');
